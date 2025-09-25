@@ -1,0 +1,11 @@
+{
+  "site": {
+    "name": "SignalStag",
+    "pages": [
+      {
+        "path": "/",
+        "title": "Home"
+      }
+    ]
+  }
+}
