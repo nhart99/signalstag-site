@@ -1,11 +1,68 @@
 {
   "site": {
     "name": "SignalStag",
+    "brandColor": "#2f6f63",
     "pages": [
       {
         "path": "/",
-        "title": "Home"
-      }
+        "title": "Home",
+        "sections": [
+          {
+            "id": "hero",
+            "type": "hero",
+            "props": {
+              "headline": "Emergency Medical SOAP Note Generator",
+              "subhead": "Generate clean, structured SOAP Notes fast so you can focus on the patient, not the paperwork.",
+              "ctaPrimaryText": "Get Updates",
+              "ctaPrimaryHref": "#updates",
+              "ctaSecondaryText": "Contact",
+              "ctaSecondaryHref": "#contact",
+              "image": "/assets/app-mockup-1242x2688_01.png"
+            }
+          },
+          {
+            "id": "features",
+            "type": "bullets",
+            "props": {
+              "title": "Features",
+              "items": [
+                "Quick SOAP creation",
+                "Offline-friendly UI",
+                "Clean exports"
+              ]
+            }
+          },
+          {
+            "id": "sponsor",
+            "type": "callout",
+            "props": {
+              "title": "Launch sponsor",
+              "logo": "/assets/sponsor-idaho-rescue-training.png",
+              "text": "Launch sponsor: Idaho Rescue Training."
+            }
+          },
+          {
+            "id": "updates",
+            "type": "embed",
+            "props": {
+              "title": "Follow for updates",
+              "provider": "Brevo",
+              "embedSelector": "#brevo-form"
+            }
+          },
+          {
+            "id": "contact",
+            "type": "form",
+            "props": {
+              "title": "Contact",
+              "method": "POST",
+              "netlify": true
+            }
+          }
+        ]
+      },
+      { "path": "/privacy.html", "title": "Privacy" },
+      { "path": "/terms.html", "title": "Terms" }
     ]
   }
 }
