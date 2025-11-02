@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Signal Stag — Field-ready tools and consulting</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Signal Stag builds field-ready tools and consulting services. First release: WildSOAP, a wilderness SOAP note generator for first responders." />
+  <title>Signal Stag — Conversational Consulting & Custom Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Signal Stag helps organizations solve interesting problems through conversational consulting and custom solutions. Let's talk about what you're building." />
+  <meta name="theme-color" content="#2c3e50" />
 
   <!-- Open Graph / Twitter -->
-  <meta property="og:title" content="Signal Stag — Field-ready tools and consulting" />
-  <meta property="og:description" content="Building critical tools for discerning professionals. Starting with WildSOAP - offline SOAP note documentation for first responders." />
+  <meta property="og:title" content="Signal Stag — Conversational Consulting" />
+  <meta property="og:description" content="We solve interesting problems through consulting and custom solutions. Let's have a conversation about what you're building." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://signalstag.com/" />
   <meta property="og:image" content="https://signalstag.com/assets/og-image.png" />
@@ -18,251 +19,846 @@
   <link rel="stylesheet" href="/styles.css" />
   <script defer src="/script.js"></script>
 
-  <!-- Brevo (styles) — place AFTER your CSS so you can override if needed -->
   <style>
-    @font-face {
-      font-display: block;
-      font-family: Roboto;
-      src: url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/7529907e9eaf8ebb5220c5f9850e3811.woff2) format("woff2"),
-           url(https://assets.brevo.com/font/Roboto/Latin/normal/normal/25c678feafdc175a70922a116c9be3e7.woff) format("woff");
-    }
-    @font-face {
-      font-display: fallback;
-      font-family: Roboto;
-      font-weight: 600;
-      src: url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/6e9caeeafb1f3491be3e32744bc30440.woff2) format("woff2"),
-           url(https://assets.brevo.com/font/Roboto/Latin/medium/normal/71501f0d8d5aa95960f6475d5487d4c2.woff) format("woff");
-    }
-    @font-face {
-      font-display: fallback;
-      font-family: Roboto;
-      font-weight: 700;
-      src: url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/3ef7cf158f310cf752d5ad08cd0e7e60.woff2) format("woff2"),
-           url(https://assets.brevo.com/font/Roboto/Latin/bold/normal/ece3a1d82f18b60bcce0211725c476aa.woff) format("woff");
-    }
-    #sib-container input::placeholder,
-    #sib-container textarea::placeholder { text-align:left; font-family:Helvetica, sans-serif; color:#c0ccda; }
-    #sib-container a { text-decoration: underline; color: #2BB2FC; }
-  </style>
-  <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css">
-
-  <style>
-    /* SignalStag Navy & Copper brand colors */
-    :root { 
-      color-scheme: light dark; 
-      --deep-navy: #2c3e50;
+    /* Brand colors */
+    :root {
+      --navy: #2c3e50;
       --copper: #b85c3e;
-      --charcoal: #6c7b7f;
-      --pearl: #ecf0f1;
-      --soft-white: #f8f9fa;
+      --light-gray: #f8f9fa;
+      --mid-gray: #e9ecef;
+      --text-gray: #495057;
+      --border-gray: #dee2e6;
     }
-    body { margin:0; font-family: Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; line-height:1.5; background: var(--soft-white); }
-    .container { max-width:1100px; margin:auto; padding:0 1rem; }
-    header.site-header { position:sticky; top:0; background: var(--soft-white); border-bottom:1px solid var(--pearl); }
-    header .brand { display:inline-flex; gap:.5rem; align-items:center; color: var(--deep-navy); text-decoration:none; font-weight:700; }
-    nav ul { list-style:none; display:flex; gap:1rem; margin:0; padding:0; }
-    nav a { color: var(--charcoal); text-decoration:none; padding:.5rem .6rem; border-radius:.5rem; }
-    nav a:hover, nav a:focus-visible { background: var(--pearl); }
-    .row { display:flex; justify-content:space-between; align-items:center; gap:1rem; }
-    .hero { padding:4rem 0 3rem; }
-    .h1 { font-size:clamp(1.8rem, 2vw + 1.1rem, 3rem); margin:.2rem 0 .6rem; color: var(--deep-navy); font-weight: bold; }
-    .h2 { font-size:clamp(1.3rem, 1.2vw + .9rem, 2rem); margin:0 0 .75rem; color: var(--deep-navy); font-weight: bold; }
-    .lead { font-size:1.125rem; opacity:.95; color: var(--charcoal); }
-    .btn { display:inline-block; padding:.7rem 1rem; border-radius:.7rem; border:1px solid var(--charcoal); text-decoration:none; color: var(--charcoal); }
-    .btn.primary { background: var(--deep-navy); color: var(--soft-white); border-color:transparent; font-weight: bold; }
-    .btn.primary:hover, .btn.primary:focus-visible { filter:brightness(.95); }
-    .btn.copper { background: var(--copper); color: var(--soft-white); border-color:transparent; font-weight: bold; }
-    .btn.copper:hover, .btn.copper:focus-visible { filter:brightness(.95); }
-    .section { padding:3rem 0; }
-    .muted { background: var(--pearl); }
-    .feature-list { padding-left:1rem; display:grid; gap:.5rem; color: var(--charcoal); }
-    .card { display:grid; gap:.75rem; border:1px solid var(--pearl); border-radius:1rem; padding:1rem; background: var(--soft-white); }
-    footer { border-top:1px solid var(--pearl); padding:1rem 0; background: var(--pearl); }
 
-    /* Two-up screenshots */
-    .device { display:flex; gap:1rem; justify-content:center; align-items:flex-start; flex-wrap:wrap; }
-    .device img { border-radius:1.2rem; width:min(45%, 420px); height:auto; box-shadow:0 10px 24px rgba(44,62,80,.15); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* Forms + a11y helpers */
-    label { font-weight:600; color: var(--deep-navy); }
-    input, textarea { width:100%; padding:.7rem .8rem; border:1px solid var(--charcoal); border-radius:.7rem; background: var(--pearl); color: var(--charcoal); }
-    input:focus-visible, textarea:focus-visible { outline:3px solid var(--deep-navy); outline-offset:2px; }
-    .hp { position:absolute !important; left:-9999px !important; height:0; width:0; overflow:hidden; }
-    .small { font-size:.95rem; opacity:.9; color: var(--charcoal); }
-    .skip-link { position:absolute; left:-999px; top:-999px; }
-    .skip-link:focus { left:1rem; top:1rem; background: var(--deep-navy); color: var(--soft-white); padding:.5rem .75rem; border-radius:.5rem; }
-    .logo-container { display: flex; align-items: center; gap: .5rem; }
-    .logo-img { width: 32px; height: 32px; }
-    
-    /* Product spotlight */
-    .product-spotlight { 
-      background: linear-gradient(135deg, var(--deep-navy) 0%, var(--charcoal) 100%); 
-      color: var(--soft-white); 
-      border-radius: 1rem; 
-      padding: 2rem; 
-      margin: 2rem 0; 
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      line-height: 1.6;
+      color: var(--text-gray);
+      background: #fff;
+      /* Improve text rendering on mobile */
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
-    .product-spotlight h3 { color: var(--soft-white); margin-top: 0; }
-    .product-spotlight p { opacity: 0.9; }
+
+    /* Remove tap highlight on mobile */
+    a, button, input, textarea {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Header */
+    header {
+      border-bottom: 1px solid var(--border-gray);
+      background: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header .inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--navy);
+      font-weight: 600;
+      font-size: 1.25rem;
+    }
+
+    .logo-img {
+      width: 36px;
+      height: 36px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--navy);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 6rem 0 5rem;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      color: var(--navy);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p.lead {
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      color: var(--text-gray);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      line-height: 1.5;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: var(--navy);
+      color: #fff;
+      border: 2px solid var(--navy);
+    }
+
+    .btn-primary:hover {
+      background: #243342;
+      border-color: #243342;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--navy);
+      border: 2px solid var(--navy);
+    }
+
+    .btn-secondary:hover {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    /* Section */
+    section {
+      padding: 5rem 0;
+    }
+
+    section.alt {
+      background: var(--light-gray);
+    }
+
+    h2 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      color: var(--navy);
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .section-intro {
+      font-size: 1.125rem;
+      color: var(--text-gray);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .service-card {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-gray);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .alt .service-card {
+      background: #fff;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px rgba(44, 62, 80, 0.1);
+    }
+
+    .service-card h3 {
+      color: var(--navy);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+
+    .service-card p {
+      color: var(--text-gray);
+      line-height: 1.6;
+    }
+
+    /* Accent elements */
+    .accent-dot {
+      width: 4px;
+      height: 4px;
+      background: var(--copper);
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 0.5rem;
+    }
+
+    /* Product mention */
+    .product-mention {
+      background: linear-gradient(135deg, var(--navy) 0%, #1a2633 100%);
+      color: #fff;
+      padding: 3rem;
+      border-radius: 1rem;
+      margin: 4rem auto;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    .product-mention h3 {
+      color: #fff;
+      font-size: 1.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .product-mention p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.125rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn-copper {
+      background: var(--copper);
+      color: #fff;
+      border: 2px solid var(--copper);
+    }
+
+    .btn-copper:hover {
+      background: #a34e33;
+      border-color: #a34e33;
+    }
+
+    /* Contact section */
+    .contact-content {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .contact-card {
+      background: #fff;
+      padding: 1.5rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-gray);
+      text-align: center;
+    }
+
+    .contact-card h3 {
+      color: var(--navy);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-card a {
+      color: var(--copper);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* Newsletter */
+    .newsletter-form {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 0.75rem;
+      border: 1px solid var(--border-gray);
+      max-width: 500px;
+      margin: 2rem auto 0;
+    }
+
+    .newsletter-form h3 {
+      color: var(--navy);
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .newsletter-form p {
+      text-align: center;
+      color: var(--text-gray);
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    label {
+      display: block;
+      color: var(--navy);
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid var(--border-gray);
+      border-radius: 0.5rem;
+      font-family: inherit;
+      font-size: 1rem;
+      transition: border-color 0.2s;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--navy);
+    }
+
+    .hp {
+      position: absolute !important;
+      left: -9999px !important;
+      height: 0;
+      width: 0;
+      overflow: hidden;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 0.875rem;
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    button[type="submit"]:hover {
+      background: #243342;
+    }
+
+    .small-text {
+      font-size: 0.875rem;
+      color: var(--text-gray);
+      margin-top: 0.75rem;
+      text-align: center;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-gray);
+      padding: 2rem 0;
+      background: var(--light-gray);
+    }
+
+    footer .inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    footer p {
+      color: var(--text-gray);
+      font-size: 0.95rem;
+    }
+
+    footer nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    footer a {
+      color: var(--text-gray);
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    footer a:hover {
+      color: var(--navy);
+    }
+
+    /* Mobile optimizations */
+
+    /* Prevent iOS text zoom on orientation change */
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      /* Smooth scrolling for in-page navigation */
+      scroll-behavior: smooth;
+    }
+
+    /* Better focus styles for accessibility on all devices */
+    *:focus-visible {
+      outline: 3px solid var(--navy);
+      outline-offset: 2px;
+    }
+
+    /* Safe area insets for notched devices */
+    @supports (padding: max(0px)) {
+      body {
+        padding-left: max(0px, env(safe-area-inset-left));
+        padding-right: max(0px, env(safe-area-inset-right));
+      }
+    }
+
+    /* Tablet and below */
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 1.25rem;
+      }
+
+      header .inner {
+        padding: 1rem 1.25rem;
+      }
+
+      nav ul {
+        gap: 0.75rem;
+      }
+
+      nav a {
+        padding: 0.5rem;
+        font-size: 0.9rem;
+      }
+
+      .hero {
+        padding: 3rem 0 2.5rem;
+      }
+
+      h1 {
+        line-height: 1.15;
+      }
+
+      .hero p.lead {
+        font-size: 1.125rem;
+        margin-bottom: 2rem;
+      }
+
+      .btn {
+        padding: 0.875rem 1.5rem;
+      }
+
+      section {
+        padding: 3rem 0;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .service-card {
+        padding: 1.5rem;
+      }
+
+      .product-mention {
+        padding: 2rem 1.5rem;
+        margin: 3rem auto;
+      }
+
+      .product-mention h3 {
+        font-size: 1.5rem;
+      }
+
+      .product-mention p {
+        font-size: 1rem;
+      }
+
+      footer .inner {
+        flex-direction: column;
+        text-align: center;
+        gap: 1rem;
+      }
+
+      footer nav {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+    }
+
+    /* Mobile phones */
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 1rem;
+      }
+
+      header .inner {
+        padding: 1rem;
+      }
+
+      .brand {
+        font-size: 1.125rem;
+      }
+
+      .logo-img {
+        width: 32px;
+        height: 32px;
+      }
+
+      nav ul {
+        gap: 0.5rem;
+      }
+
+      nav a {
+        padding: 0.4rem 0.5rem;
+        font-size: 0.85rem;
+      }
+
+      .hero {
+        padding: 2.5rem 0 2rem;
+      }
+
+      h1 {
+        margin-bottom: 1rem;
+      }
+
+      .hero p.lead {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem;
+      }
+
+      .btn {
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        /* Minimum 44px touch target height */
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      section {
+        padding: 2.5rem 0;
+      }
+
+      h2 {
+        margin-bottom: 0.75rem;
+      }
+
+      .section-intro {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .service-card {
+        padding: 1.25rem;
+      }
+
+      .service-card h3 {
+        font-size: 1.25rem;
+      }
+
+      .product-mention {
+        padding: 1.75rem 1.25rem;
+        margin: 2.5rem auto;
+      }
+
+      .product-mention h3 {
+        font-size: 1.375rem;
+      }
+
+      .newsletter-form,
+      .contact-card {
+        padding: 1.5rem;
+      }
+
+      /* Prevent iOS zoom on input focus */
+      input[type="text"],
+      input[type="email"],
+      textarea {
+        font-size: 16px;
+      }
+
+      button[type="submit"] {
+        /* Minimum 48px touch target */
+        min-height: 48px;
+        font-size: 1rem;
+      }
+    }
+
+    /* Small phones and landscape orientation */
+    @media (max-width: 375px) {
+      .container {
+        padding: 0 0.875rem;
+      }
+
+      .hero {
+        padding: 2rem 0 1.75rem;
+      }
+
+      section {
+        padding: 2rem 0;
+      }
+
+      .brand span {
+        display: none;
+      }
+
+      nav a {
+        font-size: 0.8rem;
+      }
+    }
+
+    /* Touch device optimizations */
+    @media (hover: none) and (pointer: coarse) {
+      /* Larger touch targets for all interactive elements */
+      a, button {
+        min-height: 44px;
+        min-width: 44px;
+      }
+
+      /* Remove hover effects on touch devices */
+      .service-card:hover {
+        transform: none;
+      }
+
+      /* Make touch feedback more apparent */
+      button:active,
+      .btn:active {
+        transform: scale(0.97);
+        transition: transform 0.1s;
+      }
+    }
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
-
-  <header class="site-header">
-    <div class="container row">
-      <a class="brand" href="/" aria-label="SignalStag Home">
-        <div class="logo-container">
-          <img src="/assets/signal_stag_logo.png" alt="Signal Stag logo" class="logo-img">
-          <span>SignalStag</span>
-        </div>
+  <header>
+    <div class="inner">
+      <a class="brand" href="/">
+        <img src="/assets/signal_stag_logo.png" alt="" class="logo-img">
+        <span>Signal Stag</span>
       </a>
-      <nav aria-label="Primary">
+      <nav>
         <ul>
-          <li><a href="#about">About</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#updates">Updates</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#approach">Approach</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-  <main id="main">
+  <main>
     <!-- Hero -->
     <section class="hero">
       <div class="container">
-        <div>
-          <h1 class="h1">Signal Stag</h1>
-          <p class="lead">Field-ready tools and consulting services for wilderness professionals</p>
-          <p class="small" style="margin:.5rem 0 1rem;">Building critical solutions where reliability isn't optional — it's everything.</p>
-          <div class="actions" style="display:flex; gap:.75rem; flex-wrap:wrap;">
-            <a class="btn primary" href="/soap">View WildSOAP</a>
-            <a class="btn" href="#contact">Get in Touch</a>
-          </div>
+        <h1>Let's solve something interesting</h1>
+        <p class="lead">Conversational consulting for organizations tackling complex problems. We specialize in custom solutions where off-the-shelf doesn't cut it.</p>
+        <div class="cta-buttons">
+          <a href="#contact" class="btn btn-primary">Start a Conversation</a>
+          <a href="#services" class="btn btn-secondary">What We Do</a>
         </div>
+      </div>
+    </section>
 
-        <!-- Product spotlight -->
-        <div class="product-spotlight">
-          <h3>Available soon: WildSOAP</h3>
-          <p>Offline SOAP note documentation for wilderness first responders. Built for remote environments where professional medical care is hours away.</p>
-          <div style="margin-top: 1rem;">
-            <a class="btn copper" href="/soap">Learn More →</a>
+    <!-- Services -->
+    <section id="services">
+      <div class="container">
+        <h2 style="text-align: center;">What We Offer</h2>
+        <p class="section-intro">
+          We're problem solvers who happen to build things. Whether you need strategic guidance, custom tools, or someone to help you figure out what you actually need—we're here to help.
+        </p>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>Conversational Consulting</h3>
+            <p>Not every problem needs a proposal. Sometimes you need a conversation with someone who gets it. We help you think through challenges, evaluate options, and chart a path forward.</p>
+          </div>
+
+          <div class="service-card">
+            <h3>Custom Solutions</h3>
+            <p>When existing tools don't fit, we build what you need. Field-tested applications, workflow automation, data systems—solutions designed for your specific context.</p>
+          </div>
+
+          <div class="service-card">
+            <h3>Process & Change</h3>
+            <p>Technology is only part of the equation. We help organizations evaluate processes, manage transitions, and implement changes that actually stick.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- About -->
-    <section id="about" class="section">
+    <!-- Product Mention -->
+    <section>
       <div class="container">
-        <h2 class="h2">About Signal Stag</h2>
-        <div style="display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-          <div>
-            <p class="lead">We develop tools and services for professionals working in challenging environments where traditional solutions fall short.</p>
-            <p>Our focus is on process evaluation, change management, and field operations where reliability, simplicity, and functionality are critical requirements.</p>
+        <div class="product-mention">
+          <h3>WildSOAP</h3>
+          <p>Our first product: An offline wilderness medical documentation app for first responders. Because some problems are universal enough to productize.</p>
+          <a href="/soap" class="btn btn-copper">Learn More About WildSOAP</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Approach -->
+    <section id="approach" class="alt">
+      <div class="container">
+        <h2 style="text-align: center;">How We Work</h2>
+        <p class="section-intro">
+          We're still figuring out exactly what Signal Stag is. What we know: we like interesting problems, honest conversations, and building things that work in the real world.
+        </p>
+
+        <div class="services-grid">
+          <div class="service-card">
+            <h3>Start with Conversation</h3>
+            <p>No lengthy RFPs or sales calls. Just a conversation about what you're trying to do and whether we can help.</p>
           </div>
-          <div>
-            <h3 style="color: var(--deep-navy); margin-top: 0;">Our Approach</h3>
-            <ul class="feature-list">
-              <li><strong>Field-tested solutions:</strong> Built with input from active professionals</li>
-              <li><strong>Offline-first design:</strong> Works when connectivity doesn't</li>
-              <li><strong>Rugged reliability:</strong> Built for real-world conditions</li>
-              <li><strong>User-focused:</strong> Designed for your needs and requirements</li>
-              <li><strong>Data security:</strong> Your data, not ours, because otherwise it'd be free</li>
-            </ul>
+
+          <div class="service-card">
+            <h3>Focus on Context</h3>
+            <p>Your constraints are unique. We build solutions that work within your reality—budget, timeline, team, and environment.</p>
+          </div>
+
+          <div class="service-card">
+            <h3>Deliver Results</h3>
+            <p>Whether it's strategic clarity or working software, we focus on outcomes that move your organization forward.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Products -->
-    <section id="products" class="section muted">
+    <!-- Newsletter -->
+    <section>
       <div class="container">
-        <h2 class="h2">Products & Services</h2>
-        
-        <!-- Current Product -->
-        <div class="card" style="margin-bottom: 2rem;">
-          <div style="display: grid; gap: 1rem; grid-template-columns: 100px 1fr auto; align-items: center;">
-            <div>
-              <div style="width:80px; height:80px; background: var(--deep-navy); border-radius:.8rem; display:flex; align-items:center; justify-content:center; color: var(--soft-white); font-weight: bold;">SOAP</div>
-            </div>
-            <div>
-              <h3 style="color: var(--deep-navy); margin: 0 0 .5rem 0;">WildSOAP</h3>
-              <p style="margin: 0; color: var(--charcoal);">Wilderness response documentation app for first responders. Offline-first with voice dictation and professional PDF export.</p>
-              <p class="small" style="margin: .5rem 0 0 0;"><strong>Status:</strong> Available soon for iOS and Android</p>
-            </div>
-            <div>
-              <a class="btn primary" href="/soap">View Details</a>
-            </div>
-          </div>
-        </div>
+        <div class="newsletter-form">
+          <h3>Stay in Touch</h3>
+          <p>Occasional updates on what we're building and thinking about. No spam, unsubscribe anytime.</p>
 
-        <!-- Future Products -->
-        <div style="display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-          <div class="card">
-            <h3 style="color: var(--deep-navy); margin-top: 0;">Field Documentation Suite</h3>
-            <p>Expanded tools for incident reporting, risk assessment, and team communication in remote environments.</p>
-            <p class="small"><strong>Timeline:</strong> 2026</p>
-          </div>
-          <div class="card">
-            <h3 style="color: var(--deep-navy); margin-top: 0;">Consulting Services</h3>
-            <p>Custom tool development and workflow optimization for organizations and SAR teams.</p>
-            <p class="small"><strong>Availability:</strong> Contact for details</p>
-          </div>
+          <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
+            <input type="hidden" name="form-name" value="newsletter" />
+            <input class="hp" type="text" name="bot-field" tabindex="-1" autocomplete="off" />
+
+            <div class="form-group">
+              <label for="name">Name (optional)</label>
+              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" inputmode="email" autocomplete="email" required />
+            </div>
+
+            <button type="submit">Subscribe</button>
+            <p class="small-text">We respect your inbox. Emails are infrequent and always relevant.</p>
+          </form>
         </div>
       </div>
     </section>
 
-    <!-- Updates -->
-    <section id="updates" class="section">
-      <div class="container">
-        <h2 class="h2">Stay Updated</h2>
-        <p class="small">Get notifications about new products, updates, and technology insights. Double opt-in. Unsubscribe anytime.</p>
+    <!-- Contact -->
+    <section id="contact" class="alt">
+      <div class="container contact-content">
+        <h2 style="text-align: center;">Get in Touch</h2>
+        <p class="section-intro">
+          Have an interesting problem? Want to explore whether we're a good fit? Let's have a conversation.
+        </p>
 
-        <!-- Begin Brevo Form -->
-        <div class="sib-form" style="text-align:center; background-color:#EFF2F7;">
-          <!-- Your Brevo block (kept intact; you can adjust visible text in the form builder) -->
-          <div id="sib-form-container" class="sib-form-container">
-            <div id="error-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;max-width:540px;">
-              <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-                <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon"><path d="M256 40c118.621 0 216 96.075 216 216 0 119.291-96.61 216-216 216-119.244 0-216-96.562-216-216 0-119.203 96.602-216 216-216m0-32C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm-11.49 120h22.979c6.823 0 12.274 5.682 11.99 12.5l-7 168c-.268 6.428-5.556 11.5-11.99 11.5h-8.979c-6.433 0-11.722-5.073-11.99-11.5l-7-168c-.283-6.818 5.167-12.5 11.99-12.5zM256 340c-15.464 0-28 12.536-28 28s12.536 28 28 28 28-12.536 28-28-12.536-28-28-28z"/></svg>
-                <span class="sib-form-message-panel__inner-text">Your subscription could not be saved. Please try again.</span>
+        <div class="contact-methods">
+          <div class="contact-card">
+            <h3>Email</h3>
+            <p><a href="mailto:hello@signalstag.com">hello@signalstag.com</a></p>
+          </div>
+
+          <div class="contact-card">
+            <h3>Or use Netlify forms</h3>
+            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="company" action="/message-received.html" style="text-align: left; margin-top: 1rem;">
+              <input type="hidden" name="form-name" value="contact" />
+              <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" />
+
+              <div class="form-group">
+                <label for="contact-name">Name</label>
+                <input type="text" id="contact-name" name="name" autocomplete="name" required />
               </div>
-            </div>
 
-            <div id="success-message" class="sib-form-message-panel" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#085229; background-color:#e7faf0; border-radius:3px; border-color:#13ce66;max-width:540px;">
-              <div class="sib-form-message-panel__text sib-form-message-panel__text--center">
-                <svg viewBox="0 0 512 512" class="sib-icon sib-notification__icon"><path d="M256 8C119.033 8 8 119.033 8 256s111.033 248 248 248 248-111.033 248-248S392.967 8 256 8zm0 464c-118.664 0-216-96.055-216-216 0-118.663 96.055-216 216-216 118.664 0 216 96.055 216 216 0 118.663-96.055 216-216 216zm141.63-274.961L217.15 376.071c-4.705 4.667-12.303 4.637-16.97-.068l-85.878-86.572c-4.667-4.705-4.637-12.303.068-16.97l8.52-8.451c4.705-4.667 12.303-4.637 16.97.068l68.976 69.533 163.441-162.13c4.705-4.667 12.303-4.637 16.97.068l8.451 8.52c4.668 4.705 4.637 12.303-.068 16.97z"/></svg>
-                <span class="sib-form-message-panel__inner-text">Your subscription has been successful.</span>
+              <div class="form-group">
+                <label for="contact-email">Email</label>
+                <input type="email" id="contact-email" name="email" inputmode="email" autocomplete="email" required />
               </div>
-            </div>
 
-            <div id="sib-container" class="sib-container--large sib-container--vertical" style="text-align:center; background-color:#fff; max-width:540px; border-radius:3px; border:1px solid #C0CCD9; direction:ltr">
-              <form id="sib-form" method="POST" action="https://870162f7.sibforms.com/serve/MUIFAHF4ykuh95TTDWgwynq62khwyFAtHH10GNixST6ewMEgeysIbdcYo5nzksfF3lNygXsPOsWLdfYyCbtAcYOp1kf2k7D93ANTkHm65lEoQQstd9wYKSlGiGEDjf_Hg9eUVxh04lIiCssZ2ZO5g04nysyP9x6N_33batFXIMH5JZoHOPrDOw7CCTuAmz5dTh-yBnU_TbK3wYznUA==" data-type="subscription">
-                <div style="padding: 8px 0;">
-                  <div class="sib-form-block" style="font-size:28px; text-align:left; font-weight:700; font-family:Helvetica, sans-serif; color:#3C4858;">
-                    <p>Follow for updates</p>
-                  </div>
-                </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" placeholder="Tell us about what you're working on..." autocomplete="off" required></textarea>
+              </div>
 
-                <div style="padding: 8px 0;">
-                  <div class="sib-input sib-form-block">
-                    <div class="form__entry entry_block">
-                      <div class="form__label-row">
-                        <label class="entry__label" style="font-weight:700; text-align:left; font-size:16px; font-family:Helvetica, sans-serif; color:#3c4858;" for="FIRSTNAME">First name (optional)</label>
-                        <div class="entry__field">
-                          <input class="input" maxlength="200" type="text" id="FIRSTNAME" name="FIRSTNAME" autocomplete="given-name" placeholder="First name" />
-                        </div>
-                      </div>
-                      <label class="entry__error entry__error--primary" style="font-size:16px; text-align:left; font-family:Helvetica, sans-serif; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;"></label>
-                    </div>
-                  </div>
-                </div>
+              <button type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-                <div style="padding: 8px 0;">
-                  <div class="sib-input sib-form-block">
-                    <div class="form__entry entry_block">
-                      <div class="form__label-row">
-                        <label class="entry__label" style="font-weight:700; text-align:left; font-size:16px; font-family:Helvetica, sans-serif; color:#3c4858;" for="EMAIL" data-required="*">Email</label>
-                        <div class="ent
+  <footer>
+    <div class="inner">
+      <p>&copy; <span id="year"></span> Signal Stag</p>
+      <nav>
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/soap">WildSOAP</a>
+      </nav>
+    </div>
+  </footer>
+</body>
+</html>
