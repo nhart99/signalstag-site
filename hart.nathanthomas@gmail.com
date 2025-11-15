@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Signal Stag — Conversational Consulting & Custom Solutions</title>
+  <title>SignalStag — Conversational Consulting & Custom Solutions</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="description" content="SignalStag helps organizations solve interesting problems through conversational consulting and custom solutions. Let's talk about what you're building." />
   <meta name="theme-color" content="#2c3e50" />
@@ -837,7 +837,7 @@
     <div class="inner">
       <a class="brand" href="/">
         <img src="/assets/signal_stag_logo.png" alt="" class="logo-img">
-        <span>Signal Stag</span>
+        <span>SignalStag</span>
       </a>
       <nav>
         <ul>
@@ -933,7 +933,7 @@
       <div class="container">
         <div class="newsletter-form">
           <h3>Stay Connected</h3>
-          <p>Choose what you'd like to receive from Signal Stag.</p>
+          <p>Choose what you'd like to receive from SignalStag.</p>
 
           <!-- HubSpot Form Embed -->
           <div class="hs-form-frame" data-region="na2" data-form-id="bd3f6b9b-6e83-457c-b0bd-2179e4600d7f" data-portal-id="244349622"></div>
@@ -965,7 +965,7 @@
 
   <footer>
     <div class="inner">
-      <p>&copy; <span id="year"></span> Signal Stag</p>
+      <p>&copy; <span id="year"></span> SignalStag</p>
       <nav>
         <a href="/privacy.html">Privacy</a>
         <a href="/terms.html">Terms</a>
