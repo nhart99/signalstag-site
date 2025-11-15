@@ -1,0 +1,64 @@
+# Netlify configuration for signalstag.com
+
+[build]
+  publish = "."
+
+# Force HTTPS redirects
+[[redirects]]
+  from = "http://signalstag.com/*"
+  to = "https://signalstag.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "http://www.signalstag.com/*"
+  to = "https://signalstag.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.signalstag.com/*"
+  to = "https://signalstag.com/:splat"
+  status = 301
+  force = true
+
+# Security headers
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Force HTTPS
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+
+    # Prevent clickjacking
+    X-Frame-Options = "SAMEORIGIN"
+
+    # Prevent MIME sniffing
+    X-Content-Type-Options = "nosniff"
+
+    # XSS protection
+    X-XSS-Protection = "1; mode=block"
+
+    # Referrer policy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Permissions policy
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+    # Content Security Policy - Allow HubSpot forms
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' https://js-na2.hsforms.net https://js.hsforms.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.hsforms.net https://*.hubspot.com; frame-src https://*.hsforms.com; form-action 'self' https://*.hsforms.com;"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
