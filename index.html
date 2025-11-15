@@ -19,6 +19,9 @@
   <link rel="stylesheet" href="/styles.css" />
   <script defer src="/script.js"></script>
 
+  <!-- HubSpot Forms -->
+  <script src="https://js-na2.hsforms.net/forms/embed/244349622.js" defer></script>
+
   <style>
     /* Brand colors */
     :root {
@@ -310,28 +313,152 @@
       text-decoration: underline;
     }
 
-    /* Newsletter */
-    .newsletter-form {
+    /* Newsletter & Contact Forms */
+    .newsletter-form,
+    .contact-form-wrapper {
       background: #fff;
       padding: 2rem;
       border-radius: 0.75rem;
       border: 1px solid var(--border-gray);
-      max-width: 500px;
+      max-width: 600px;
       margin: 2rem auto 0;
     }
 
-    .newsletter-form h3 {
+    .newsletter-form h3,
+    .contact-form-wrapper h3 {
       color: var(--navy);
       font-size: 1.5rem;
       margin-bottom: 1rem;
       text-align: center;
     }
 
-    .newsletter-form p {
+    .newsletter-form p,
+    .contact-form-wrapper p {
       text-align: center;
       color: var(--text-gray);
       font-size: 0.95rem;
       margin-bottom: 1.5rem;
+    }
+
+    /* HubSpot Form Styling */
+    .hs-form-frame {
+      max-width: 100%;
+    }
+
+    .hs-form-frame .hs-form {
+      font-family: inherit !important;
+    }
+
+    .hs-form-frame .hs-input {
+      width: 100% !important;
+      padding: 0.75rem !important;
+      border: 1px solid var(--border-gray) !important;
+      border-radius: 0.5rem !important;
+      font-family: inherit !important;
+      font-size: 1rem !important;
+      transition: border-color 0.2s !important;
+    }
+
+    .hs-form-frame .hs-input:focus {
+      outline: none !important;
+      border-color: var(--navy) !important;
+    }
+
+    .hs-form-frame .hs-button {
+      width: 100% !important;
+      padding: 0.875rem !important;
+      background: var(--navy) !important;
+      color: #fff !important;
+      border: none !important;
+      border-radius: 0.5rem !important;
+      font-size: 1rem !important;
+      font-weight: 500 !important;
+      cursor: pointer !important;
+      transition: background 0.2s !important;
+      margin-top: 1rem !important;
+    }
+
+    .hs-form-frame .hs-button:hover {
+      background: #243342 !important;
+    }
+
+    .hs-form-frame .hs-form-field {
+      margin-bottom: 1rem !important;
+    }
+
+    .hs-form-frame .hs-form-field label {
+      display: block !important;
+      color: var(--navy) !important;
+      font-weight: 500 !important;
+      margin-bottom: 0.5rem !important;
+      font-size: 0.95rem !important;
+    }
+
+    .hs-form-frame .hs-error-msgs {
+      list-style: none !important;
+      padding: 0 !important;
+      margin: 0.5rem 0 0 0 !important;
+    }
+
+    .hs-form-frame .hs-error-msg {
+      color: #dc3545 !important;
+      font-size: 0.875rem !important;
+    }
+
+    .hs-form-frame textarea {
+      min-height: 100px !important;
+      font-family: inherit !important;
+    }
+
+    /* HubSpot checkbox styling */
+    .hs-form-frame .hs-form-booleancheckbox {
+      margin: 1.5rem 0 !important;
+    }
+
+    .hs-form-frame .hs-form-booleancheckbox label {
+      display: flex !important;
+      align-items: flex-start !important;
+      gap: 0.75rem !important;
+      font-weight: 400 !important;
+      line-height: 1.5 !important;
+    }
+
+    .hs-form-frame .hs-form-booleancheckbox input[type="checkbox"] {
+      margin-top: 0.25rem !important;
+      min-width: 18px !important;
+      min-height: 18px !important;
+      cursor: pointer !important;
+    }
+
+    .hs-form-frame .hs-form-booleancheckbox-display {
+      flex: 1 !important;
+    }
+
+    /* Legal/consent text styling */
+    .hs-form-frame .hs-richtext {
+      font-size: 0.875rem !important;
+      color: var(--text-gray) !important;
+      line-height: 1.5 !important;
+      margin: 1rem 0 !important;
+    }
+
+    .hs-form-frame .hs-richtext p {
+      margin: 0.5rem 0 !important;
+    }
+
+    .hs-form-frame .hs-richtext a {
+      color: var(--copper) !important;
+      text-decoration: underline !important;
+    }
+
+    /* Required field asterisk */
+    .hs-form-frame .hs-form-required {
+      color: var(--copper) !important;
+    }
+
+    /* Submit button wrapper */
+    .hs-form-frame .hs-submit {
+      margin-top: 1.5rem !important;
     }
 
     .form-group {
@@ -621,21 +748,42 @@
       }
 
       .newsletter-form,
+      .contact-form-wrapper,
       .contact-card {
         padding: 1.5rem;
       }
 
-      /* Prevent iOS zoom on input focus */
+      /* Prevent iOS zoom on input focus - HubSpot forms */
       input[type="text"],
       input[type="email"],
-      textarea {
-        font-size: 16px;
+      textarea,
+      .hs-form-frame .hs-input,
+      .hs-form-frame textarea {
+        font-size: 16px !important;
       }
 
-      button[type="submit"] {
+      button[type="submit"],
+      .hs-form-frame .hs-button {
         /* Minimum 48px touch target */
-        min-height: 48px;
-        font-size: 1rem;
+        min-height: 48px !important;
+        font-size: 1rem !important;
+      }
+
+      /* HubSpot checkbox styling for mobile */
+      .hs-form-frame .hs-form-booleancheckbox {
+        margin: 1rem 0 !important;
+      }
+
+      .hs-form-frame .hs-form-booleancheckbox label {
+        display: flex !important;
+        align-items: flex-start !important;
+        gap: 0.5rem !important;
+      }
+
+      .hs-form-frame input[type="checkbox"] {
+        min-width: 20px !important;
+        min-height: 20px !important;
+        margin-top: 0.25rem !important;
       }
     }
 
@@ -783,68 +931,30 @@
     <section>
       <div class="container">
         <div class="newsletter-form">
-          <h3>Stay in Touch</h3>
-          <p>Occasional updates on what we're building and thinking about. No spam, unsubscribe anytime.</p>
+          <h3>Stay Connected</h3>
+          <p>Choose what you'd like to receive from Signal Stag.</p>
 
-          <form name="newsletter" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thanks.html">
-            <input type="hidden" name="form-name" value="newsletter" />
-            <input class="hp" type="text" name="bot-field" tabindex="-1" autocomplete="off" />
-
-            <div class="form-group">
-              <label for="name">Name (optional)</label>
-              <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" />
-            </div>
-
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" placeholder="you@example.com" inputmode="email" autocomplete="email" required />
-            </div>
-
-            <button type="submit">Subscribe</button>
-            <p class="small-text">We respect your inbox. Emails are infrequent and always relevant.</p>
-          </form>
+          <!-- HubSpot Form Embed -->
+          <div class="hs-form-frame" data-region="na2" data-form-id="bd3f6b9b-6e83-457c-b0bd-2179e4600d7f" data-portal-id="244349622"></div>
         </div>
       </div>
     </section>
 
     <!-- Contact -->
     <section id="contact" class="alt">
-      <div class="container contact-content">
+      <div class="container">
         <h2 style="text-align: center;">Get in Touch</h2>
         <p class="section-intro">
           Have an interesting problem? Want to explore whether we're a good fit? Let's have a conversation.
         </p>
 
-        <div class="contact-methods">
-          <div class="contact-card">
-            <h3>Email</h3>
-            <p><a href="mailto:hello@signalstag.com">hello@signalstag.com</a></p>
-          </div>
+        <div class="contact-form-wrapper">
+          <!-- HubSpot Form Embed -->
+          <div class="hs-form-frame" data-region="na2" data-form-id="bd3f6b9b-6e83-457c-b0bd-2179e4600d7f" data-portal-id="244349622"></div>
 
-          <div class="contact-card">
-            <h3>Or use Netlify forms</h3>
-            <form name="contact" method="POST" data-netlify="true" netlify-honeypot="company" action="/message-received.html" style="text-align: left; margin-top: 1rem;">
-              <input type="hidden" name="form-name" value="contact" />
-              <input class="hp" type="text" name="company" tabindex="-1" autocomplete="off" />
-
-              <div class="form-group">
-                <label for="contact-name">Name</label>
-                <input type="text" id="contact-name" name="name" autocomplete="name" required />
-              </div>
-
-              <div class="form-group">
-                <label for="contact-email">Email</label>
-                <input type="email" id="contact-email" name="email" inputmode="email" autocomplete="email" required />
-              </div>
-
-              <div class="form-group">
-                <label for="message">Message</label>
-                <textarea id="message" name="message" rows="4" placeholder="Tell us about what you're working on..." autocomplete="off" required></textarea>
-              </div>
-
-              <button type="submit">Send Message</button>
-            </form>
-          </div>
+          <p class="small-text" style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-gray);">
+            Prefer email? Reach us directly at <a href="mailto:hello@signalstag.com" style="color: var(--copper); text-decoration: none; font-weight: 500;">hello@signalstag.com</a>
+          </p>
         </div>
       </div>
     </section>
